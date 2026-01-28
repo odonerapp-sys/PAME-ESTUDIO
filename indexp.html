@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pam Studio - Cyber Glam</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --neon-pink: #ff007f; 
+  --neon-blue: #00f2ff;
+  --bg-dark: #0a0005;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Rajdhani', sans-serif;
+  background-color: var(--bg-dark);
+  /* RECUERDA SUBIR TU FOTO CON EL NOMBRE fondo.jpg */
+  background-image: linear-gradient(rgba(10, 0, 5, 0.85), rgba(40, 0, 20, 0.85)), url('fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.app { width: 100%; max-width: 450px; text-align: center; }
+
+.glitch {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 2px 2px var(--neon-pink), -2px -2px var(--neon-blue);
+  margin-bottom: 10px;
+}
+
+.section-title {
+    font-family: 'Orbitron';
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--neon-blue);
+    margin: 30px 0 15px;
+    text-transform: uppercase;
+}
+
+/* INPUTS */
+.input-cyber {
+    width: 100%;
+    background: rgba(0, 242, 255, 0.1);
+    border: 1px solid var(--neon-blue);
+    padding: 14px;
+    border-radius: 50px;
+    color: #fff;
+    font-family: 'Orbitron';
+    font-size: 10px;
+    margin-bottom: 12px;
+    text-align: center;
+    outline: none;
+}
+
+/* PORTAFOLIO */
+.portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+.photo-card { border: 1px solid var(--neon-pink); border-radius: 20px; overflow: hidden; }
+.photo-card img { width: 100%; height: 150px; object-fit: cover; display: block; }
+.photo-label { font-size: 10px; font-family: 'Orbitron'; padding: 6px; background: var(--neon-pink); color: #fff; }
+
+/* CARD RESERVA */
+.card {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--neon-pink);
+  border-radius: 35px;
+  padding: 25px;
+  box-shadow: 0 0 20px rgba(255, 0, 127, 0.2);
+}
+
+.services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
+.service {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--neon-pink);
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.service.selected { background: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); transform: scale(1.1); }
+
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.day { 
+    font-size: 11px; aspect-ratio: 1/1; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.1); cursor: pointer; 
+}
+.day.active { background: var(--neon-blue); color: #000; box-shadow: 0 0 12px var(--neon-blue); font-weight: bold; }
+
+.cta {
+  background: var(--neon-pink);
+  color: #fff;
+  border: none;
+  padding: 18px;
+  font-family: 'Orbitron';
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 25px;
+  box-shadow: 0 0 20px var(--neon-pink);
+}
+
+/* PANEL PRIVADO STAFF */
+#adminPanel {
+    display: none;
+    background: #000;
+    border: 2px solid var(--neon-blue);
+    border-radius: 25px;
+    margin-top: 20px;
+    padding: 20px;
+}
+.cita-item { border-bottom: 1px solid #222; padding: 10px 0; font-size: 11px; text-align: left; }
+.admin-btn { background: transparent; border: none; color: rgba(255,255,255,0.05); font-size: 9px; margin-top: 50px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <h1 class="glitch">Pam Studio</h1>
+
+  <p class="section-title">// PORTAFOLIO</p>
+  <div class="portfolio-grid">
+      <div class="photo-card"><img src="foto1.jpg"><div class="photo-label">MAKEUP</div></div>
+      <div class="photo-card" style="border-color: var(--neon-blue);"><img src="foto2.jpg"><div class="photo-label" style="background: var(--neon-blue);">LASHES</div></div>
+      <div class="photo-card" style="border-color: var(--neon-blue);"><img src="foto3.jpg"><div class="photo-label" style="background: var(--neon-blue);">BROWS</div></div>
+      <div class="photo-card"><img src="foto4.jpg"><div class="photo-label">HAIR</div></div>
+  </div>
+
+  <p class="section-title">// AGENDAR CITA</p>
+  <div class="card">
+    <input type="text" id="clienteNombre" class="input-cyber" placeholder="ESCRIBE TU NOMBRE">
+    <input type="tel" id="clienteTel" class="input-cyber" placeholder="TU WHATSAPP">
+
+    <div class="services">
+      <div class="service" onclick="selectService(this)">MakeUp</div>
+      <div class="service" onclick="selectService(this)">Hair</div>
+      <div class="service" onclick="selectService(this)">Cejas</div>
+      <div class="service" onclick="selectService(this)">Liso</div>
+    </div>
+
+    <div class="calendar-grid" id="calendarGrid"></div>
+    <button class="cta" onclick="confirmarCita()">RESERVAR AHORA</button>
+  </div>
+
+  <div id="adminPanel">
+    <h3 style="font-family: 'Orbitron'; color: var(--neon-blue); font-size: 12px;">REGISTRO STAFF</h3>
+    <div id="listaCitas"></div>
+    <button onclick="borrarHistorial()" style="color:red; background:none; border:none; cursor:pointer; margin-top:15px; font-size:10px;">LIMPIAR</button>
+    <button onclick="document.getElementById('adminPanel').style.display='none'" style="color:white; background:none; border:1px solid white; border-radius:20px; padding:5px 15px; margin-top:15px; cursor:pointer; font-size:10px;">CERRAR</button>
+  </div>
+
+  <button class="admin-btn" onclick="accederAdmin()">STAFF ACCESS</button>
+</div>
+
+<script>
+const miTelefono = "525572873715";
+
+// --- PASO FINAL: PEGA AQUÍ TU LINK DE GOOGLE SHEETS QUE TERMINA EN /exec ---
+const urlScript = "TU_URL_DE_GOOGLE_SHEETS_AQUI"; 
+
+let servicioSeleccionado = "";
+let diaSeleccionado = "";
+
+const grid = document.getElementById('calendarGrid');
+for(let i=1; i<=31; i++) {
+    let d = document.createElement('div'); d.className = 'day'; d.textContent = i;
+    d.onclick = function() { 
+        document.querySelectorAll('.day').forEach(el => el.classList.remove('active'));
+        this.classList.add('active'); diaSeleccionado = i;
+    };
+    grid.appendChild(d);
+}
+
+function selectService(el) {
+    document.querySelectorAll('.service').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected'); servicioSeleccionado = el.textContent;
+}
+
+async function confirmarCita() {
+    const nombre = document.getElementById('clienteNombre').value.trim();
+    const tel = document.getElementById('clienteTel').value.trim();
+
+    if(!nombre || !tel || !servicioSeleccionado || !diaSeleccionado) {
+        alert("POR FAVOR LLENA TODOS LOS DATOS"); return;
+    }
+
+    const cita = { nombre, tel, servicio: servicioSeleccionado, dia: diaSeleccionado };
+
+    // GUARDAR EN GOOGLE SHEETS
+    fetch(urlScript, { method: 'POST', mode: 'no-cors', body: JSON.stringify(cita) });
+
+    // GUARDAR EN PANEL LOCAL (ACCESO STAFF)
+    let agenda = JSON.parse(localStorage.getItem('agendaPam')) || [];
+    agenda.push(cita);
+    localStorage.setItem('agendaPam', JSON.stringify(agenda));
+
+    // ABRIR WHATSAPP
+    const msg = `¡Hola Pam! Soy *${nombre}*. Reservo *${servicioSeleccionado}* para el día *${diaSeleccionado}*. Mi tel es: ${tel}.`;
+    window.open(`https://wa.me/${miTelefono}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function accederAdmin() {
+    if(prompt("Clave Staff:") === "555") {
+        document.getElementById('adminPanel').style.display = 'block';
+        actualizarLista();
+    }
+}
+
+function actualizarLista() {
+    const lista = document.getElementById('listaCitas');
+    const agenda = JSON.parse(localStorage.getItem('agendaPam')) || [];
+    lista.innerHTML = agenda.length > 0 ? 
+        agenda.map(c => `<div class="cita-item"><b>${c.nombre}</b><br>${c.servicio} - Día ${c.dia}</div>`).join('') : 
+        "Sin registros nuevos.";
+}
+
+function borrarHistorial() {
+    if(confirm("¿Borrar lista del panel?")) {
+        localStorage.removeItem('agendaPam');
+        actualizarLista();
+    }
+}
+</script>
+</body>
+</html>
