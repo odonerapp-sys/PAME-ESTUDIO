@@ -19,8 +19,7 @@
             margin: 0;
             font-family: 'Rajdhani', sans-serif;
             background-color: var(--bg-dark);
-            /* RECUERDA TENER TU ARCHIVO fondo.jpg EN LA CARPETA */
-            background-image: linear-gradient(rgba(10, 0, 5, 0.85), rgba(40, 0, 20, 0.85)), url('fondo.jpg');
+            background-image: linear-gradient(rgba(10, 0, 5, 0.9), rgba(40, 0, 20, 0.9)), url('fondo.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -31,7 +30,7 @@
             min-height: 100vh;
         }
 
-        .app { width: 100%; max-width: 450px; text-align: center; }
+        .app { width: 100%; max-width: 450px; text-align: center; padding-bottom: 50px; }
 
         .glitch {
             font-family: 'Orbitron', sans-serif;
@@ -52,21 +51,6 @@
             text-transform: uppercase;
         }
 
-        /* INPUTS */
-        .input-cyber {
-            width: 100%;
-            background: rgba(0, 242, 255, 0.1);
-            border: 1px solid var(--neon-blue);
-            padding: 14px;
-            border-radius: 50px;
-            color: #fff;
-            font-family: 'Orbitron';
-            font-size: 10px;
-            margin-bottom: 12px;
-            text-align: center;
-            outline: none;
-        }
-
         /* PORTAFOLIO */
         .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
         .photo-card { border: 1px solid var(--neon-pink); border-radius: 20px; overflow: hidden; }
@@ -81,6 +65,20 @@
             border-radius: 35px;
             padding: 25px;
             box-shadow: 0 0 20px rgba(255, 0, 127, 0.2);
+        }
+
+        .input-cyber {
+            width: 100%;
+            background: rgba(0, 242, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            padding: 14px;
+            border-radius: 50px;
+            color: #fff;
+            font-family: 'Orbitron';
+            font-size: 10px;
+            margin-bottom: 12px;
+            text-align: center;
+            outline: none;
         }
 
         .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
@@ -98,7 +96,6 @@
         }
         .service.selected { background: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); transform: scale(1.1); }
 
-        /* CALENDARIO */
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
         .day { 
             font-size: 11px; aspect-ratio: 1/1; border-radius: 50%; 
@@ -106,13 +103,7 @@
             border: 1px solid rgba(255,255,255,0.1); cursor: pointer; 
         }
         .day.active { background: var(--neon-blue); color: #000; box-shadow: 0 0 12px var(--neon-blue); font-weight: bold; }
-        .day.disabled {
-            background: rgba(255, 255, 255, 0.05);
-            color: #444;
-            border: 1px solid #222;
-            cursor: not-allowed;
-            text-decoration: line-through;
-        }
+        .day.disabled { background: rgba(255,255,255,0.05); color: #444; border: 1px solid #222; cursor: not-allowed; text-decoration: line-through; }
 
         .cta {
             background: var(--neon-pink);
@@ -135,31 +126,26 @@
             border-top: 1px dotted var(--neon-blue);
             font-size: 11px;
             color: rgba(255, 255, 255, 0.7);
-            letter-spacing: 1px;
             text-transform: uppercase;
         }
-        .payment-info span {
-            color: var(--neon-blue);
-            display: block;
-            margin-top: 5px;
-            font-weight: bold;
-            font-size: 14px;
-        }
+        .payment-info span { color: var(--neon-blue); display: block; margin-top: 5px; font-weight: bold; font-size: 13px; }
 
-        /* TEXTO FINAL IMPOSTANTE */
+        /* TEXTO FINAL IMPOSTANTE - CORREGIDO */
         .final-statement {
-            margin-top: 40px;
+            margin-top: 50px;
+            margin-bottom: 40px;
             text-align: left;
             font-family: 'Orbitron', sans-serif;
-            font-size: 26px;
+            font-size: 26px; /* Tamaño grande */
             font-weight: 900;
             line-height: 1.1;
-            color: #fff;
+            color: #ffffff !important; /* Forzamos color blanco */
             text-transform: uppercase;
-            border-left: 5px solid var(--neon-pink);
+            border-left: 6px solid var(--neon-pink);
             padding-left: 15px;
             letter-spacing: -1px;
-            text-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+            display: block;
+            text-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
         }
 
         /* PANEL PRIVADO STAFF */
@@ -168,11 +154,11 @@
             background: #000;
             border: 2px solid var(--neon-blue);
             border-radius: 25px;
-            margin-top: 20px;
+            margin: 20px 0;
             padding: 20px;
         }
         .cita-item { border-bottom: 1px solid #222; padding: 10px 0; font-size: 11px; text-align: left; }
-        .admin-btn { background: transparent; border: none; color: rgba(255,255,255,0.05); font-size: 9px; margin-top: 50px; cursor: pointer; width: 100%; }
+        .admin-btn { background: transparent; border: none; color: rgba(255,255,255,0.1); font-size: 9px; margin-top: 20px; cursor: pointer; width: 100%; }
     </style>
 </head>
 <body>
@@ -225,28 +211,19 @@
 
 <script>
 const miTelefono = "525572873715";
-
-// --- CONFIGURACIÓN DE DISPONIBILIDAD ---
-// Agrega aquí los números de los días que quieres BLOQUEAR
-const diasOcupados = [5, 12, 20]; 
-
+const diasOcupados = [5, 12, 20]; // Edita aquí los días bloqueados
 let servicioSeleccionado = "";
 let diaSeleccionado = "";
 
-// Generar Calendario
+// Calendario
 const grid = document.getElementById('calendarGrid');
 for(let i=1; i<=31; i++) {
-    let d = document.createElement('div'); 
-    d.className = 'day'; 
-    d.textContent = i;
-    
-    if(diasOcupados.includes(i)) {
-        d.classList.add('disabled');
-    } else {
+    let d = document.createElement('div'); d.className = 'day'; d.textContent = i;
+    if(diasOcupados.includes(i)) { d.classList.add('disabled'); }
+    else {
         d.onclick = function() { 
             document.querySelectorAll('.day').forEach(el => el.classList.remove('active'));
-            this.classList.add('active'); 
-            diaSeleccionado = i;
+            this.classList.add('active'); diaSeleccionado = i;
         };
     }
     grid.appendChild(d);
@@ -265,21 +242,19 @@ function confirmarCita() {
         alert("POR FAVOR LLENA TODOS LOS DATOS"); return;
     }
 
-    const cita = { nombre, tel, servicio: servicioSeleccionado, dia: diaSeleccionado };
-
-    // GUARDAR EN PANEL LOCAL
+    // Guardar Localmente
     let agenda = JSON.parse(localStorage.getItem('agendaPam')) || [];
-    agenda.push(cita);
+    agenda.push({ nombre, tel, servicio: servicioSeleccionado, dia: diaSeleccionado });
     localStorage.setItem('agendaPam', JSON.stringify(agenda));
 
-    // MENSAJE DE WHATSAPP PROFESIONAL
+    // WhatsApp Profesional
     const msg = `✨ *SOLICITUD DE RESERVA - PAM STUDIO* ✨%0A%0A` +
                 `Hola, me gustaría agendar una *experiencia completa* para mi cuidado facial:%0A%0A` +
                 `👤 *Nombre:* ${nombre}%0A` +
                 `💅 *Servicio:* ${servicioSeleccionado}%0A` +
                 `📅 *Día solicitado:* ${diaSeleccionado}%0A` +
                 `📱 *WhatsApp:* ${tel}%0A%0A` +
-                `_Quedo a la espera de tu confirmación de disponibilidad. Gracias._`;
+                `_Quedo a la espera de tu confirmación. Gracias._`;
 
     window.open(`https://wa.me/${miTelefono}?text=${msg}`, '_blank');
 }
@@ -296,16 +271,12 @@ function actualizarLista() {
     const agenda = JSON.parse(localStorage.getItem('agendaPam')) || [];
     lista.innerHTML = agenda.length > 0 ? 
         agenda.reverse().map(c => `<div class="cita-item"><b>${c.nombre}</b><br>${c.servicio} - Día ${c.dia}</div>`).join('') : 
-        "Sin registros nuevos.";
+        "Sin registros.";
 }
 
 function borrarHistorial() {
-    if(confirm("¿Borrar lista del panel?")) {
-        localStorage.removeItem('agendaPam');
-        actualizarLista();
-    }
+    if(confirm("¿Borrar historial?")) { localStorage.removeItem('agendaPam'); actualizarLista(); }
 }
 </script>
 </body>
-
 </html>
