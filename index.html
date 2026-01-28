@@ -30,16 +30,23 @@
             min-height: 100vh;
         }
 
-        .app { width: 100%; max-width: 450px; text-align: center; padding-bottom: 50px; }
+        /* Contenedor principal con espacio extra al final */
+        .app { 
+            width: 100%; 
+            max-width: 450px; 
+            text-align: center; 
+            padding-bottom: 120px; 
+            display: flex;
+            flex-direction: column;
+        }
 
         .glitch {
             font-family: 'Orbitron', sans-serif;
             font-size: 32px;
             font-weight: 700;
-            color: #fff;
             text-transform: uppercase;
             text-shadow: 2px 2px var(--neon-pink), -2px -2px var(--neon-blue);
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .section-title {
@@ -51,13 +58,11 @@
             text-transform: uppercase;
         }
 
-        /* PORTAFOLIO */
         .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
         .photo-card { border: 1px solid var(--neon-pink); border-radius: 20px; overflow: hidden; }
         .photo-card img { width: 100%; height: 150px; object-fit: cover; display: block; }
         .photo-label { font-size: 10px; font-family: 'Orbitron'; padding: 6px; background: var(--neon-pink); color: #fff; }
 
-        /* CARD RESERVA */
         .card {
             background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
@@ -103,7 +108,7 @@
             border: 1px solid rgba(255,255,255,0.1); cursor: pointer; 
         }
         .day.active { background: var(--neon-blue); color: #000; box-shadow: 0 0 12px var(--neon-blue); font-weight: bold; }
-        .day.disabled { background: rgba(255,255,255,0.05); color: #444; border: 1px solid #222; cursor: not-allowed; text-decoration: line-through; }
+        .day.disabled { color: #444; border: 1px solid #222; cursor: not-allowed; text-decoration: line-through; }
 
         .cta {
             background: var(--neon-pink);
@@ -119,36 +124,33 @@
             box-shadow: 0 0 20px var(--neon-pink);
         }
 
-        /* LEYENDA PAGOS */
         .payment-info {
-            margin-top: 30px;
+            margin-top: 40px;
             padding: 15px;
-            border-top: 1px dotted var(--neon-blue);
+            border-top: 1px solid rgba(0, 242, 255, 0.3);
             font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.6);
             text-transform: uppercase;
         }
         .payment-info span { color: var(--neon-blue); display: block; margin-top: 5px; font-weight: bold; font-size: 13px; }
 
-        /* TEXTO FINAL IMPOSTANTE - CORREGIDO */
+        /* LEYENDA FINAL IZQUIERDA - REFORZADA */
         .final-statement {
-            margin-top: 50px;
-            margin-bottom: 40px;
-            text-align: left;
+            margin: 60px 0 !important;
+            text-align: left !important;
             font-family: 'Orbitron', sans-serif;
-            font-size: 26px; /* Tamaño grande */
-            font-weight: 900;
+            font-size: 28px !important;
+            font-weight: 900 !important;
             line-height: 1.1;
-            color: #ffffff !important; /* Forzamos color blanco */
+            color: var(--neon-blue) !important; /* Forzamos color para contraste */
             text-transform: uppercase;
             border-left: 6px solid var(--neon-pink);
             padding-left: 15px;
-            letter-spacing: -1px;
-            display: block;
-            text-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+            display: block !important;
+            visibility: visible !important;
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
         }
 
-        /* PANEL PRIVADO STAFF */
         #adminPanel {
             display: none;
             background: #000;
@@ -158,7 +160,7 @@
             padding: 20px;
         }
         .cita-item { border-bottom: 1px solid #222; padding: 10px 0; font-size: 11px; text-align: left; }
-        .admin-btn { background: transparent; border: none; color: rgba(255,255,255,0.1); font-size: 9px; margin-top: 20px; cursor: pointer; width: 100%; }
+        .admin-btn { background: transparent; border: none; color: rgba(255,255,255,0.05); font-size: 9px; margin-top: 30px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -211,7 +213,7 @@
 
 <script>
 const miTelefono = "525572873715";
-const diasOcupados = [5, 12, 20]; // Edita aquí los días bloqueados
+const diasOcupados = [5, 12, 20]; 
 let servicioSeleccionado = "";
 let diaSeleccionado = "";
 
@@ -242,19 +244,16 @@ function confirmarCita() {
         alert("POR FAVOR LLENA TODOS LOS DATOS"); return;
     }
 
-    // Guardar Localmente
     let agenda = JSON.parse(localStorage.getItem('agendaPam')) || [];
     agenda.push({ nombre, tel, servicio: servicioSeleccionado, dia: diaSeleccionado });
     localStorage.setItem('agendaPam', JSON.stringify(agenda));
 
-    // WhatsApp Profesional
     const msg = `✨ *SOLICITUD DE RESERVA - PAM STUDIO* ✨%0A%0A` +
-                `Hola, me gustaría agendar una *experiencia completa* para mi cuidado facial:%0A%0A` +
+                `Hola, me gustaría agendar una *experiencia completa* con estos detalles:%0A%0A` +
                 `👤 *Nombre:* ${nombre}%0A` +
                 `💅 *Servicio:* ${servicioSeleccionado}%0A` +
-                `📅 *Día solicitado:* ${diaSeleccionado}%0A` +
-                `📱 *WhatsApp:* ${tel}%0A%0A` +
-                `_Quedo a la espera de tu confirmación. Gracias._`;
+                `📅 *Día solicitado:* ${diaSeleccionado}%0A%0A` +
+                `_Quedo pendiente de tu confirmación._`;
 
     window.open(`https://wa.me/${miTelefono}?text=${msg}`, '_blank');
 }
@@ -275,7 +274,7 @@ function actualizarLista() {
 }
 
 function borrarHistorial() {
-    if(confirm("¿Borrar historial?")) { localStorage.removeItem('agendaPam'); actualizarLista(); }
+    if(confirm("¿Borrar historial local?")) { localStorage.removeItem('agendaPam'); actualizarLista(); }
 }
 </script>
 </body>
